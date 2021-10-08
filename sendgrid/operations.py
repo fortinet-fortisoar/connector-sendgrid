@@ -297,11 +297,11 @@ def check_health(config):
 operations = {
     'send_email': send_email,
     'get_email_stats': get_email_stats,
-    'search_email': search_email,     #not verified
+    'search_email': search_email,
     'get_contact_list': get_contact_list,
     'get_alerts': get_alerts,
     'create_batch_id': create_batch_id,
     'get_scheduled_send': get_scheduled_send,
-    'update_scheduled_send': update_scheduled_send,   #not verified
-    'delete_scheduled_send': delete_scheduled_send    #not verified
+    'update_scheduled_send': update_scheduled_send,   
+    'delete_scheduled_send': delete_scheduled_send 
 }
