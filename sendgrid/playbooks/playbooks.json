@@ -1,0 +1,800 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - SendGrid - 1.0.0",
+      "description": null,
+      "visible": true,
+      "image": null,
+      "uuid": "43177975-0877-4437-8040-8b326d22f0dc",
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Create Batch ID",
+          "aliasName": null,
+          "description": "This action allows you to generate a new batch ID.",
+          "collection": "/api/3/workflow_collections/43177975-0877-4437-8040-8b326d22f0dc",
+          "tag": null,
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/08fb3ad4-4053-4a87-98bc-085faf947c80",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "1ef31650-f151-4e28-9e10-34377ab729a2",
+                "title": "Sendgrid: Create Batch ID",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "40",
+              "top": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "08fb3ad4-4053-4a87-98bc-085faf947c80"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Create Batch ID",
+              "description": null,
+              "arguments": {
+                "name": "SendGrid",
+                "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "sendgrid",
+                "operation": "create_batch_id",
+                "operationTitle": "Create Batch ID",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "left": "331",
+              "top": "165",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "a1db444c-3717-4668-96ba-a46fc5841d65"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "bbbef0a2-922b-49b4-be8a-0b495a9415d0",
+              "name": "Start -> Create Batch ID",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/a1db444c-3717-4668-96ba-a46fc5841d65",
+              "sourceStep": "/api/3/workflow_steps/08fb3ad4-4053-4a87-98bc-085faf947c80"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1631793471,
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "08c2f57a-44b9-4382-86ad-d5bbbefef1aa",
+          "recordTags": [
+            "Sendgrid"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Email Statistics",
+          "aliasName": null,
+          "description": "Retrieve all of your email statistics between a given date range based on input parameters you have provided",
+          "collection": "/api/3/workflow_collections/43177975-0877-4437-8040-8b326d22f0dc",
+          "tag": null,
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/14817c2d-3726-4130-b9a4-a26019fa995c",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "0fd8fe3b-73e8-4a5e-9cc8-782b9e35bcba",
+                "title": "Sendgrid: Get Email Statistics",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "40",
+              "top": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "14817c2d-3726-4130-b9a4-a26019fa995c"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Email Statistics",
+              "description": null,
+              "arguments": {
+                "name": "SendGrid",
+                "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
+                "params": {
+                  "end_date": "",
+                  "stats_by": "Global Email Statistics",
+                  "start_date": "2021-09-14T18:30:00.000Z",
+                  "aggregated_by": ""
+                },
+                "version": "1.0.0",
+                "connector": "sendgrid",
+                "operation": "get_email_stats",
+                "operationTitle": "Get Email Statistics",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "left": "385",
+              "top": "154",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "bb09a6d9-b05f-492a-9fde-98a3b80e9dd5"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "2c63a828-b99b-479f-a104-76c76cead26e",
+              "name": "Start -> Get Email Statistics",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/bb09a6d9-b05f-492a-9fde-98a3b80e9dd5",
+              "sourceStep": "/api/3/workflow_steps/14817c2d-3726-4130-b9a4-a26019fa995c"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1631786934,
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "17ab157c-0f41-4921-9852-7d112c649aa1",
+          "recordTags": [
+            "Sendgrid"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Update Scheduled Send",
+          "aliasName": null,
+          "description": "This action allows you to cancel or pause a scheduled send associated with a batch_id.",
+          "collection": "/api/3/workflow_collections/43177975-0877-4437-8040-8b326d22f0dc",
+          "tag": null,
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/6356dd37-20dd-4aae-bd53-8f47ef279a1e",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "5be20177-8032-4029-bfe8-edde3404abed",
+                "title": "Sendgrid: Update Scheduled Send",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "40",
+              "top": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "6356dd37-20dd-4aae-bd53-8f47ef279a1e"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Update Scheduled Send",
+              "description": null,
+              "arguments": {
+                "name": "SendGrid",
+                "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
+                "params": {
+                  "status": "Cancel",
+                  "batch_id": "NTU0YTFmMzMtMTZlNS0xMWVjLWJmOWEtYTYyY2Y3YWI5NWM0LWU3N2NlYjc2Ng"
+                },
+                "version": "1.0.0",
+                "connector": "sendgrid",
+                "operation": "update_scheduled_send",
+                "operationTitle": "Update Scheduled Send",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "left": "355",
+              "top": "218",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "ce077e1d-cf41-4998-91c6-a1acbcb9d9ea"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "3c676fb8-b508-4433-8b71-e84d48bda3da",
+              "name": "Start -> Update Scheduled Send",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/ce077e1d-cf41-4998-91c6-a1acbcb9d9ea",
+              "sourceStep": "/api/3/workflow_steps/6356dd37-20dd-4aae-bd53-8f47ef279a1e"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1631795331,
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "20d26b4a-daa7-465a-9529-4a463c98f575",
+          "recordTags": [
+            "Sendgrid"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Contact List",
+          "aliasName": null,
+          "description": "This endpoint returns an array of all of your contact lists.",
+          "collection": "/api/3/workflow_collections/43177975-0877-4437-8040-8b326d22f0dc",
+          "tag": null,
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/caf4b665-acca-4791-aa85-5a8735e15ed7",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "9747349c-c1e1-44aa-8696-bd754e065df8",
+                "title": "Sendgrid: Get Contact List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "40",
+              "top": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "caf4b665-acca-4791-aa85-5a8735e15ed7"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Contact List",
+              "description": null,
+              "arguments": {
+                "name": "SendGrid",
+                "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "sendgrid",
+                "operation": "get_contact_list",
+                "operationTitle": "Get Contact List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "left": "318",
+              "top": "130",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "ef91160a-1b8f-44e0-930b-8c03073ff967"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "92bd8bb6-1081-4e38-a513-a935297f2299",
+              "name": "Start -> Get Contact List",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/ef91160a-1b8f-44e0-930b-8c03073ff967",
+              "sourceStep": "/api/3/workflow_steps/caf4b665-acca-4791-aa85-5a8735e15ed7"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1631792952,
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "56948ddd-35de-4c8e-b47d-1dd9cb70c193",
+          "recordTags": [
+            "Sendgrid"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Scheduled Send",
+          "aliasName": null,
+          "description": "This action allows you to retrieve all cancelled and paused scheduled send information.",
+          "collection": "/api/3/workflow_collections/43177975-0877-4437-8040-8b326d22f0dc",
+          "tag": null,
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/41af3814-8b7f-4340-a9f3-45817c475e7f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a69097ad-19d9-405e-894d-9b76fba1e1d6",
+                "title": "Sendgrid: Get Scheduled Send",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "40",
+              "top": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "41af3814-8b7f-4340-a9f3-45817c475e7f"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Scheduled Send",
+              "description": null,
+              "arguments": {
+                "name": "SendGrid",
+                "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "sendgrid",
+                "operation": "get_scheduled_send",
+                "operationTitle": "Get Scheduled Send",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "left": "368",
+              "top": "234",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "d7c777fc-3d18-44e6-b670-8f01c6053004"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "c668d9e8-828e-4c3f-aab8-8de25e889ef2",
+              "name": "Start -> Get Scheduled Send",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/d7c777fc-3d18-44e6-b670-8f01c6053004",
+              "sourceStep": "/api/3/workflow_steps/41af3814-8b7f-4340-a9f3-45817c475e7f"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1631793580,
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "78cb1402-6d01-49d9-bc66-5e1b3043e3fc",
+          "recordTags": [
+            "Sendgrid"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Search Emails",
+          "aliasName": null,
+          "description": "Filter all messages to search your Email Activity based on input query you have provided",
+          "collection": "/api/3/workflow_collections/43177975-0877-4437-8040-8b326d22f0dc",
+          "tag": null,
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/3be173f2-3576-436d-8fd2-ead7f5d029c1",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Search Emails",
+              "description": null,
+              "arguments": {
+                "name": "SendGrid",
+                "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
+                "params": {
+                  "limit": "",
+                  "query": "subject=test email from sendgrid server"
+                },
+                "version": "1.0.0",
+                "connector": "sendgrid",
+                "operation": "search_email",
+                "operationTitle": "Search Emails",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "left": "345",
+              "top": "155",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "17db0578-6fc5-4d8f-8297-1976be07da26"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "dedd4bf9-961e-4773-aee2-d09d0c019768",
+                "title": "Sendgrid: Search Emails",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "40",
+              "top": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "3be173f2-3576-436d-8fd2-ead7f5d029c1"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "317c64a2-e1bc-48c3-a3cb-5b93917b4d99",
+              "name": "Start -> Search Emails",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/17db0578-6fc5-4d8f-8297-1976be07da26",
+              "sourceStep": "/api/3/workflow_steps/3be173f2-3576-436d-8fd2-ead7f5d029c1"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1631787090,
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "7d900735-e11e-4452-a686-355f7ab9ad4b",
+          "recordTags": [
+            "Sendgrid"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Delete Scheduled Send",
+          "aliasName": null,
+          "description": "This action allows you to delete the cancellation/pause of a scheduled send.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.",
+          "collection": "/api/3/workflow_collections/43177975-0877-4437-8040-8b326d22f0dc",
+          "tag": null,
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/8ce290f3-8616-4a9c-933f-a8e55ccacd57",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Delete Scheduled Send",
+              "description": null,
+              "arguments": {
+                "name": "SendGrid",
+                "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
+                "params": {
+                  "batch_id": "NTU0YTFmMzMtMTZlNS0xMWVjLWJmOWEtYTYyY2Y3YWI5NWM0LWU3N2NlYjc2Ng"
+                },
+                "version": "1.0.0",
+                "connector": "sendgrid",
+                "operation": "delete_scheduled_send",
+                "operationTitle": "Delete Scheduled Send",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "left": "341",
+              "top": "149",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "33b58145-4cf1-45a8-b0d8-58f58475859f"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "10ad453a-f55b-4697-8330-328fd5913df3",
+                "title": "Sendgrid: Delete Scheduled Send",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "40",
+              "top": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "8ce290f3-8616-4a9c-933f-a8e55ccacd57"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "e6f51b18-ae71-4f03-85a1-72d86f27be6c",
+              "name": "Start -> Delete Scheduled Send",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/33b58145-4cf1-45a8-b0d8-58f58475859f",
+              "sourceStep": "/api/3/workflow_steps/8ce290f3-8616-4a9c-933f-a8e55ccacd57"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1631795417,
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "9d5f0ed1-a705-4bea-b94e-5244bfb37e44",
+          "recordTags": [
+            "Sendgrid"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Alerts",
+          "aliasName": null,
+          "description": "This action allows you to retrieve all of your alerts.",
+          "collection": "/api/3/workflow_collections/43177975-0877-4437-8040-8b326d22f0dc",
+          "tag": null,
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/7e520e4f-cd5c-48d1-ba0e-06e30488a430",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Alerts",
+              "description": null,
+              "arguments": {
+                "name": "SendGrid",
+                "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "sendgrid",
+                "operation": "get_alerts",
+                "operationTitle": "Get Alerts",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "left": "328",
+              "top": "166",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "765ff758-65a1-4fe4-939d-55152031f861"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "d2bad1ba-8966-48ce-bc3f-e3ea894a7a61",
+                "title": "Sendgrid: Get Alerts",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "40",
+              "top": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "7e520e4f-cd5c-48d1-ba0e-06e30488a430"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "59896c5e-54b8-4039-a015-2cb715bd4104",
+              "name": "Start -> Get Alerts",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/765ff758-65a1-4fe4-939d-55152031f861",
+              "sourceStep": "/api/3/workflow_steps/7e520e4f-cd5c-48d1-ba0e-06e30488a430"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1631793283,
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "d8b59e0c-2b23-4893-ba41-2b0c220a82f2",
+          "recordTags": [
+            "Sendgrid"
+          ],
+          "isPrivate": false,
+          "owners": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Send Email",
+          "aliasName": null,
+          "description": "Send new email using sendgrid server based on input parameters you have provided",
+          "collection": "/api/3/workflow_collections/43177975-0877-4437-8040-8b326d22f0dc",
+          "tag": null,
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/62ff33f5-741c-4cef-8922-ca7f537006ba",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Send Email",
+              "description": null,
+              "arguments": {
+                "name": "SendGrid",
+                "config": "e50a3526-b513-4d84-b660-f9b96728730e",
+                "params": {
+                  "send_at": 1631794248,
+                  "subject": "test email from sendgrid server",
+                  "batch_id": "NTU0YTFmMzMtMTZlNS0xMWVjLWJmOWEtYTYyY2Y3YWI5NWM0LWU3N2NlYjc2Ng",
+                  "iri_list": "/api/3/attachments/010ba285-f6df-467f-bd69-54c67fc1741c",
+                  "to_emails": "xyz@gmail.com",
+                  "from_email": "demo@gmail.com",
+                  "html_content": "",
+                  "cc_recipients": "",
+                  "bcc_recipients": "",
+                  "inline_iri_list": "",
+                  "plain_text_content": "plain content of body"
+                },
+                "version": "1.0.0",
+                "connector": "sendgrid",
+                "operation": "send_email",
+                "operationTitle": "Send Email",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "left": "340",
+              "top": "128",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "399d154e-fd89-429e-a1b1-b820ecaeb5c8"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "8fa10402-4f38-4090-9c0b-547c0802b1e8",
+                "title": "Sendgrid: Send Email",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "left": "40",
+              "top": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "62ff33f5-741c-4cef-8922-ca7f537006ba"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "c4aa1140-0d85-4932-b1bd-03ab2b0fb30c",
+              "name": "Start -> Send Email",
+              "label": null,
+              "isExecuted": false,
+              "targetStep": "/api/3/workflow_steps/399d154e-fd89-429e-a1b1-b820ecaeb5c8",
+              "sourceStep": "/api/3/workflow_steps/62ff33f5-741c-4cef-8922-ca7f537006ba"
+            }
+          ],
+          "versions": [],
+          "lastModifyDate": 1631795478,
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "fae2a10e-6acc-4ffe-9687-cb69c3057ef4",
+          "recordTags": [
+            "Sendgrid"
+          ],
+          "isPrivate": false,
+          "owners": []
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "Sendgrid"
+  ]
+}

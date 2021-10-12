@@ -1,0 +1,613 @@
+{
+  "name": "sendgrid",
+  "label": "SendGrid",
+  "version": "1.0.0",
+  "description": "SendGrid",
+  "publisher": "Community",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "category": "Email Server",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server Address",
+        "placeholder": "e.g. https://api.sendgrid.com",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "url",
+        "value": "https://api.sendgrid.com",
+        "description": "Address of the sendgrid server to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "API Key",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "api_key",
+        "description": "API key configured for your account to access the Sendgrid server."
+      },
+      {
+        "title": "Verify SSL",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not.By default, this option is set as True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "send_email",
+      "title": "Send Email",
+      "category": "investigation",
+      "annotation": "send_email",
+      "description": "Send new email using sendgrid server based on input parameters you have provided",
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "From",
+          "tooltip": "The 'From' email address used to deliver the message",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "email",
+          "name": "from_email",
+          "description": "The 'From' email address used to deliver the message. This address should be a verified sender in your SendGrid account."
+        },
+        {
+          "title": "To Recipients",
+          "tooltip": "The email address of the recipients, in csv or list format",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "email",
+          "name": "to_emails",
+          "description": "The email address of the recipients, in csv or list format"
+        },
+        {
+          "title": "CC Recipients",
+          "tooltip": "CSV / List Format",
+          "description": "Email IDs of the members to be added to the CC list of the email message that you want to send from the sendgrid account. You must add the email IDs in the CSV or list format.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "cc_recipients"
+        },
+        {
+          "title": "BCC Recipients",
+          "tooltip": "CSV / List Format",
+          "description": "Email IDs of the members to be added to the BCC list of the email message that you want to send from the sendgrid account. You must add the email IDs in the CSV or list format.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "bcc_recipients"
+        },
+        {
+          "title": "Subject",
+          "tooltip": "The subject of your email",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "subject",
+          "description": "The subject of your email"
+        },
+        {
+          "title": "Plain Text Body Content",
+          "tooltip": "The plain text body of the email",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "plain_text_content",
+          "description": "The plain text body of the email"
+        },
+        {
+          "title": "HTML Body Content",
+          "tooltip": "The html body of the email",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "html_content",
+          "description": "The html body of the email"
+        },
+        {
+          "title": "Attachment IRIs",
+          "tooltip": "CSV / List Format",
+          "description": "(Optional) List of IRI ID(s) of the file (s) that you want to attach to the email that you want to send from the sendgrid server. IRI IDs are used to access files from the Attachments module. You must add the Attachment IRIs in the CSV or list format.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "iri_list"
+        },
+        {
+          "title": "Inline Attachment IRIs",
+          "tooltip": "CSV / List Format",
+          "description": "(Optional) List of IRI ID(s) of the file (s) that you want to add inline to the email that you want to send from the sendgrid server.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "inline_iri_list"
+        },
+        {
+          "title": "Batch ID",
+          "tooltip": "An ID representing a batch of emails to be sent at the same time. Including a batch_id in your request allows you include this email in that batch. It also enables you to cancel or pause the delivery of that batch. For more information",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "batch_id",
+          "description": "An ID representing a batch of emails to be sent at the same time. Including a batch_id in your request allows you include this email in that batch. It also enables you to cancel or pause the delivery of that batch. For more information"
+        },
+        {
+          "title": "Scheduled Timestamp",
+          "tooltip": "A unix timestamp allowing you to specify when you want your email to be delivered.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "send_at",
+          "description": ""
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_email_stats",
+      "title": "Get Email Statistics",
+      "category": "investigation",
+      "annotation": "get_email_stats",
+      "description": "Retrieve all of your email statistics between a given date range based on input parameters you have provided",
+      "output_schema": [
+        {
+          "date": "",
+          "stats": [
+            {
+              "metrics": {
+                "blocks": "",
+                "bounce_drops": "",
+                "bounces": "",
+                "clicks": "",
+                "deferred": "",
+                "delivered": "",
+                "invalid_emails": "",
+                "opens": "",
+                "processed": "",
+                "requests": "",
+                "spam_report_drops": "",
+                "spam_reports": "",
+                "unique_clicks": "",
+                "unique_opens": "",
+                "unsubscribe_drops": "",
+                "unsubscribes": ""
+              }
+            }
+          ]
+        }
+      ],
+      "conditional_output_schema": [
+        {
+          "condition": "{{stats_by === Global Email Statistics}}",
+          "output_schema": [
+            {
+              "date": "",
+              "stats": [
+                {
+                  "metrics": {
+                    "blocks": "",
+                    "bounce_drops": "",
+                    "bounces": "",
+                    "clicks": "",
+                    "deferred": "",
+                    "delivered": "",
+                    "invalid_emails": "",
+                    "opens": "",
+                    "processed": "",
+                    "requests": "",
+                    "spam_report_drops": "",
+                    "spam_reports": "",
+                    "unique_clicks": "",
+                    "unique_opens": "",
+                    "unsubscribe_drops": "",
+                    "unsubscribes": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "condition": "{{stats_by === Country And State Province}}",
+          "output_schema": [
+            {
+              "date": "",
+              "stats": [
+                {
+                  "type": "",
+                  "name": "",
+                  "metrics": {
+                    "clicks": "",
+                    "opens": "",
+                    "unique_clicks": "",
+                    "unique_opens": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "condition": "{{stats_by === Device Type || stats_by === Client Type}}",
+          "output_schema": [
+            {
+              "date": "",
+              "stats": [
+                {
+                  "type": "",
+                  "name": "",
+                  "metrics": {
+                    "opens": "",
+                    "unique_opens": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "condition": "{{stats_by === Mailbox Provider}}",
+          "output_schema": [
+            {
+              "date": "",
+              "stats": [
+                {
+                  "type": "",
+                  "name": "",
+                  "metrics": {
+                    "blocks": "",
+                    "bounces": "",
+                    "clicks": "",
+                    "deferred": "",
+                    "delivered": "",
+                    "drops": "",
+                    "opens": "",
+                    "processed": "",
+                    "requests": "",
+                    "spam_reports": "",
+                    "unique_clicks": "",
+                    "unique_opens": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "condition": "{{true}}",
+          "output_schema": [
+            {
+              "date": "",
+              "stats": [
+                {
+                  "metrics": {
+                    "blocks": "",
+                    "bounce_drops": "",
+                    "bounces": "",
+                    "clicks": "",
+                    "deferred": "",
+                    "delivered": "",
+                    "invalid_emails": "",
+                    "opens": "",
+                    "processed": "",
+                    "requests": "",
+                    "spam_report_drops": "",
+                    "spam_reports": "",
+                    "unique_clicks": "",
+                    "unique_opens": "",
+                    "unsubscribe_drops": "",
+                    "unsubscribes": ""
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "title": "Email Statistics By",
+          "tooltip": "Get email statistics by selected input",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "options": [
+            "Global Email Statistics",
+            "Country And State Province",
+            "Device Type",
+            "Client Type",
+            "Mailbox Provider",
+            "Browser"
+          ],
+          "name": "stats_by",
+          "value": "Global Email Statistics",
+          "description": "Get email statistics based on selected input type",
+          "onchange": {
+            "Global Email Statistics": [
+            ],
+            "Country And State Province": [
+              {
+                "title": "Country",
+                "tooltip": "The country you would like to see statistics for. Currently only supported for US and CA.",
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "type": "select",
+                "options": [
+                  "US",
+                  "CA"
+                ],
+                "name": "country",
+                "description": "The country you would like to see statistics for. Currently only supported for US and CA."
+              }
+            ],
+            "Device Type": [
+            ],
+            "Client Type": [
+            ],
+            "Mailbox Provider": [
+              {
+                "title": "Mailbox Providers",
+                "tooltip": "The mail box providers to get statistics for. You can include up to 10",
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "type": "text",
+                "name": "mailbox_providers",
+                "description": "The mail box providers to get statistics for. You can include up to 10"
+              }
+            ],
+            "Browser": [
+              {
+                "title": "Browsers",
+                "tooltip": "The browsers to get statistics for. You can include up to 10 different browsers",
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "type": "text",
+                "name": "browsers",
+                "description": "The browsers to get statistics for. You can include up to 10 different browsers"
+              }
+            ]
+          }
+        },
+        {
+          "title": "Start Date",
+          "tooltip": "The starting date of the statistics to retrieve.Time is not considered",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "start_date",
+          "description": "The starting date of the statistics to retrieve. Must follow format YYYY-MM-DD."
+        },
+        {
+          "title": "End Date",
+          "tooltip": "The end date of the statistics to retrieve. Defaults to today.Time is not considered",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "datetime",
+          "name": "end_date",
+          "description": "The end date of the statistics to retrieve. Defaults to today.Must follow format YYYY-MM-DD. Note: Time is not considered"
+        },
+        {
+          "title": "Aggregate Result By",
+          "tooltip": "How to group the statistics. Available values \"day\", \"week\", or \"month\".",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "aggregated_by",
+          "description": "How to group the statistics. Available values \"day\", \"week\", or \"month\"."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "search_email",
+      "title": "Search Emails",
+      "category": "investigation",
+      "annotation": "search_email",
+      "description": "Filter all messages to search your Email Activity based on input query you have provided",
+      "output_schema": {
+        "messages": [
+          {
+            "from_email": "",
+            "msg_id": "",
+            "subject": "",
+            "to_email": "",
+            "status": "",
+            "opens_count": "",
+            "clicks_count": "",
+            "last_event_time": ""
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "title": "Query",
+          "tooltip": "Use the query syntax to filter your email activity.",
+          "placeholder": "e.g. subject=\"This is a subject test\"",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "query",
+          "description": "Use the query syntax to filter your email activity.e.g e.g. subject=\"This is a subject test\", from_email=\"testing@sendgrid.net\", etc for more filter query list check link https://docs.sendgrid.com/api-reference/e-mail-activity/filter-all-messages"
+        },
+        {
+          "title": "Limit",
+          "tooltip": "The number of results to return.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "limit",
+          "description": "The number of results to return."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_contact_list",
+      "title": "Get Contact List",
+      "category": "investigation",
+      "annotation": "get_contact_list",
+      "description": "This endpoint returns an array of all of your contact lists.",
+      "output_schema": {
+        "result": [
+          {
+            "name": "",
+            "id": "",
+            "contact_count": "",
+            "_metadata": {
+              "self": ""
+            }
+          }
+        ],
+        "_metadata": {
+          "self": ""
+        }
+      },
+      "parameters": [
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_alerts",
+      "title": "Get Alerts",
+      "category": "investigation",
+      "annotation": "get_alerts",
+      "description": "This action allows you to retrieve all of your alerts.",
+      "output_schema": [
+        {
+          "id": "",
+          "type": "",
+          "percentage": "",
+          "email_to": "",
+          "created_at": "",
+          "updated_at": ""
+        }
+      ],
+      "parameters": [
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "create_batch_id",
+      "title": "Create Batch ID",
+      "category": "investigation",
+      "annotation": "create_batch_id",
+      "description": "This action allows you to generate a new batch ID.Once a batch_id is created, you can associate it with a scheduled send using the send email action. Passing the batch_id as a field in the send email request body will assign the ID to the send you are creating.",
+      "output_schema": {
+        "batch_id": ""
+      },
+      "parameters": [
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_scheduled_send",
+      "title": "Get Scheduled Send",
+      "category": "investigation",
+      "annotation": "get_scheduled_send",
+      "description": "This action allows you to retrieve all cancelled and paused scheduled send information.",
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Batch ID",
+          "tooltip": "Retrieve the cancel/paused scheduled send information for a specific batch_id",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "batch_id",
+          "description": "Retrieve the cancel/paused scheduled send information for a specific batch_id"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "update_scheduled_send",
+      "title": "Update Scheduled Send",
+      "category": "investigation",
+      "annotation": "update_scheduled_send",
+      "description": "This action allows you to cancel or pause a scheduled send associated with a batch_id.",
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Batch ID",
+          "tooltip": "The batch ID is the identifier that your scheduled mail sends share.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "batch_id",
+          "description": "The batch ID is the identifier that your scheduled mail sends share."
+        },
+        {
+          "title": "Status",
+          "tooltip": "The status of the send you would like to implement. This can be pause or cancel",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "options": [
+            "Pause",
+            "Cancel"
+          ],
+          "name": "status",
+          "value": "Pause",
+          "description": "The status of the send you would like to implement. This can be pause or cancel"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "delete_scheduled_send",
+      "title": "Delete Scheduled Send",
+      "category": "investigation",
+      "annotation": "delete_scheduled_send",
+      "description": "This action allows you to delete the cancellation/pause of a scheduled send.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.",
+      "output_schema": {},
+      "parameters": [
+        {
+          "title": "Batch ID",
+          "tooltip": "The batch ID is the identifier that your scheduled mail sends share.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "batch_id",
+          "description": "The batch ID is the identifier that your scheduled mail sends share."
+        }
+      ],
+      "enabled": true
+    }
+  ]
+}
