@@ -9,7 +9,7 @@
   "category": "Email Server",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/sendgrid/177/sendgrid-v1-0-0",
   "configuration": {
     "fields": [
       {
@@ -21,7 +21,7 @@
         "type": "text",
         "name": "url",
         "value": "https://api.sendgrid.com",
-        "description": "Address of the sendgrid server to which you will connect and perform the automated operations."
+        "description": "URL of the SendGrid server to which you will connect and perform the automated operations."
       },
       {
         "title": "API Key",
@@ -30,7 +30,7 @@
         "visible": true,
         "type": "password",
         "name": "api_key",
-        "description": "API key configured for your account to access the Sendgrid server."
+        "description": "API key configured for your account to access the SendGrid server."
       },
       {
         "title": "Verify SSL",
@@ -40,7 +40,7 @@
         "type": "checkbox",
         "name": "verify_ssl",
         "value": true,
-        "description": "Specifies whether the SSL certificate for the server is to be verified or not.By default, this option is set as True."
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
       }
     ]
   },
@@ -50,7 +50,7 @@
       "title": "Send Email",
       "category": "investigation",
       "annotation": "send_email",
-      "description": "Send new email using sendgrid server based on input parameters you have provided",
+      "description": "Sends an email using SendGrid based on the From and To recipients and other input parameters you have specified.",
       "output_schema": {},
       "parameters": [
         {
@@ -61,7 +61,7 @@
           "visible": true,
           "type": "email",
           "name": "from_email",
-          "description": "The 'From' email address used to deliver the message. This address should be a verified sender in your SendGrid account."
+          "description": "The email ID of the sender from whose account you want to send the email. This address must be a verified sender in your SendGrid account."
         },
         {
           "title": "To Recipients",
@@ -71,12 +71,12 @@
           "visible": true,
           "type": "email",
           "name": "to_emails",
-          "description": "The email address of the recipients, in csv or list format"
+          "description": "The email IDs of the recipients, in CSV or list format, towhose account you want to deliver the email."
         },
         {
           "title": "CC Recipients",
           "tooltip": "CSV / List Format",
-          "description": "Email IDs of the members to be added to the CC list of the email message that you want to send from the sendgrid account. You must add the email IDs in the CSV or list format.",
+          "description": "(Optional) The email IDs of the members, in CSV or list format, that you want to add to the CC list of the email.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -86,7 +86,7 @@
         {
           "title": "BCC Recipients",
           "tooltip": "CSV / List Format",
-          "description": "Email IDs of the members to be added to the BCC list of the email message that you want to send from the sendgrid account. You must add the email IDs in the CSV or list format.",
+          "description": "(Optional) The email IDs of the members, in CSV or list format, that you want to add to the BCC list of the email.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -101,7 +101,7 @@
           "visible": true,
           "type": "text",
           "name": "subject",
-          "description": "The subject of your email"
+          "description": "(Optional) The subject of your email that you want to send using your SendGrid account."
         },
         {
           "title": "Plain Text Body Content",
@@ -111,7 +111,7 @@
           "visible": true,
           "type": "text",
           "name": "plain_text_content",
-          "description": "The plain text body of the email"
+          "description": "(Optional) The body of the email in plain text, which you want to send using your SendGrid account."
         },
         {
           "title": "HTML Body Content",
@@ -121,12 +121,12 @@
           "visible": true,
           "type": "text",
           "name": "html_content",
-          "description": "The html body of the email"
+          "description": "(Optional) The body of the email in HTML, which you want to send using your SendGrid account."
         },
         {
           "title": "Attachment IRIs",
           "tooltip": "CSV / List Format",
-          "description": "(Optional) List of IRI ID(s) of the file (s) that you want to attach to the email that you want to send from the sendgrid server. IRI IDs are used to access files from the Attachments module. You must add the Attachment IRIs in the CSV or list format.",
+          "description": "(Optional) The list of IRI ID(s) of the file(s), in CSV or list format, that you want to attach to the email using your SendGrid account. IRI IDs are used to access files from the 'Attachments' module in FortiSOAR.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -136,7 +136,7 @@
         {
           "title": "Inline Attachment IRIs",
           "tooltip": "CSV / List Format",
-          "description": "(Optional) List of IRI ID(s) of the file (s) that you want to add inline to the email that you want to send from the sendgrid server.",
+          "description": "(Optional) The list of IRI ID(s) of the file(s), in CSV or list format, that you want to add inline to the email using your SendGrid account. IRI IDs are used to access files from the 'Attachments' module in FortiSOAR.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -151,7 +151,7 @@
           "visible": true,
           "type": "text",
           "name": "batch_id",
-          "description": "An ID representing a batch of emails to be sent at the same time. Including a batch_id in your request allows you include this email in that batch. It also enables you to cancel or pause the delivery of that batch. For more information"
+          "description": "An ID representing a batch of emails to be sent at the same time using your SendGrid account. Including abatch_idin your request allows you to include this email in that batch and also enables you to cancel or pause the delivery of that batch."
         },
         {
           "title": "Scheduled Timestamp",
@@ -161,7 +161,7 @@
           "visible": true,
           "type": "integer",
           "name": "send_at",
-          "description": ""
+          "description": "A UNIX timestamp allowing you to specify when you want this email to be delivered."
         }
       ],
       "enabled": true
@@ -171,34 +171,7 @@
       "title": "Get Email Statistics",
       "category": "investigation",
       "annotation": "get_email_stats",
-      "description": "Retrieve all of your email statistics between a given date range based on input parameters you have provided",
-      "output_schema": [
-        {
-          "date": "",
-          "stats": [
-            {
-              "metrics": {
-                "blocks": "",
-                "bounce_drops": "",
-                "bounces": "",
-                "clicks": "",
-                "deferred": "",
-                "delivered": "",
-                "invalid_emails": "",
-                "opens": "",
-                "processed": "",
-                "requests": "",
-                "spam_report_drops": "",
-                "spam_reports": "",
-                "unique_clicks": "",
-                "unique_opens": "",
-                "unsubscribe_drops": "",
-                "unsubscribes": ""
-              }
-            }
-          ]
-        }
-      ],
+      "description": "Retrieves your email statistics between a specified date range from SendGrid based on the type of email statistics and other input parameters you have specified.",
       "conditional_output_schema": [
         {
           "condition": "{{stats_by === Global Email Statistics}}",
@@ -345,10 +318,9 @@
           ],
           "name": "stats_by",
           "value": "Global Email Statistics",
-          "description": "Get email statistics based on selected input type",
+          "description": "Retrieves email statistics based on the selected input type from SendGrid. You can choose between Global Email Statistics,Country And State Province, Device Type, Client Type, Mailbox Provider, and Browser. If you choose 'Global Email Statistics','Device Type',or'Client Type', then no other input parameter is required. If you choose 'Country And State Province', then you must specify the following parameter: Country: The country for which you want to retrieve the email statistics from SendGrid. Currently, support is forUS and CA only. If you choose 'Mailbox Provider', then you must specify the following parameter: Mailbox Providers: The mailbox providers for which you want to retrieve the email statistics from SendGrid. You can include up to 10 mailbox providers. If you choose 'Browser', then you must specify the following parameter: Browsers: The browsers for which you want to retrieve the email statistics from SendGrid. You can include up to 10 different browsers.",
           "onchange": {
-            "Global Email Statistics": [
-            ],
+            "Global Email Statistics": [],
             "Country And State Province": [
               {
                 "title": "Country",
@@ -365,10 +337,8 @@
                 "description": "The country you would like to see statistics for. Currently only supported for US and CA."
               }
             ],
-            "Device Type": [
-            ],
-            "Client Type": [
-            ],
+            "Device Type": [],
+            "Client Type": [],
             "Mailbox Provider": [
               {
                 "title": "Mailbox Providers",
@@ -403,7 +373,7 @@
           "visible": true,
           "type": "datetime",
           "name": "start_date",
-          "description": "The starting date of the statistics to retrieve. Must follow format YYYY-MM-DD."
+          "description": "The starting date from when you want to retrieve the email statistics from SendGrid. It must followYYYY-MM-DDformat. Note: Time is not considered"
         },
         {
           "title": "End Date",
@@ -413,7 +383,7 @@
           "visible": true,
           "type": "datetime",
           "name": "end_date",
-          "description": "The end date of the statistics to retrieve. Defaults to today.Must follow format YYYY-MM-DD. Note: Time is not considered"
+          "description": "The end date till when you want to retrieve the email statistics from SendGrid. By default, it is set to 'today', and it must followYYYY-MM-DDformat. Note: Time is not considered"
         },
         {
           "title": "Aggregate Result By",
@@ -423,7 +393,7 @@
           "visible": true,
           "type": "select",
           "name": "aggregated_by",
-          "description": "How to group the statistics. Available values \"day\", \"week\", or \"month\"."
+          "description": "The basis on which to group the email statistics retrieved from SendGrid. You can choose from day, week, or month."
         }
       ],
       "enabled": true
@@ -433,7 +403,7 @@
       "title": "Search Emails",
       "category": "investigation",
       "annotation": "search_email",
-      "description": "Filter all messages to search your Email Activity based on input query you have provided",
+      "description": "Filter all email messages to search your email activity in SendGrid based on the input query you have specified.",
       "output_schema": {
         "messages": [
           {
@@ -458,7 +428,7 @@
           "visible": true,
           "type": "text",
           "name": "query",
-          "description": "Use the query syntax to filter your email activity.e.g e.g. subject=\"This is a subject test\", from_email=\"testing@sendgrid.net\", etc for more filter query list check link https://docs.sendgrid.com/api-reference/e-mail-activity/filter-all-messages"
+          "description": "The query syntax that you want to use to filter your email activity in SendGrid. For example,subject=\"This is a subject test\", from_email=\"testing@sendgrid.net\", etc. For more information on parameters that you can use in a query and filtering email messages, seehttps://docs.sendgrid.com/api-reference/e-mail-activity/filter-all-messages."
         },
         {
           "title": "Limit",
@@ -468,7 +438,7 @@
           "visible": true,
           "type": "integer",
           "name": "limit",
-          "description": "The number of results to return."
+          "description": "(Optional) The maximum number of items that this operation should return in a single search."
         }
       ],
       "enabled": true
@@ -478,7 +448,7 @@
       "title": "Get Contact List",
       "category": "investigation",
       "annotation": "get_contact_list",
-      "description": "This endpoint returns an array of all of your contact lists.",
+      "description": "Returns an array of all of your contact lists fromSendGrid",
       "output_schema": {
         "result": [
           {
@@ -494,8 +464,7 @@
           "self": ""
         }
       },
-      "parameters": [
-      ],
+      "parameters": [],
       "enabled": true
     },
     {
@@ -503,7 +472,7 @@
       "title": "Get Alerts",
       "category": "investigation",
       "annotation": "get_alerts",
-      "description": "This action allows you to retrieve all of your alerts.",
+      "description": "Retrieves all of your alerts fromSendGrid.",
       "output_schema": [
         {
           "id": "",
@@ -514,8 +483,7 @@
           "updated_at": ""
         }
       ],
-      "parameters": [
-      ],
+      "parameters": [],
       "enabled": true
     },
     {
@@ -523,12 +491,11 @@
       "title": "Create Batch ID",
       "category": "investigation",
       "annotation": "create_batch_id",
-      "description": "This action allows you to generate a new batch ID.Once a batch_id is created, you can associate it with a scheduled send using the send email action. Passing the batch_id as a field in the send email request body will assign the ID to the send you are creating.",
+      "description": "Generates a new batch ID in SendGrid. Once abatch_idis created, you can associate it with a scheduled send using the \"Send Email\" action to schedule sending a batch of emails at the same time using your SendGrid account. Passing thebatch_idas a field in the request body of the \"Send Email\" action assigns the batch ID to the schedule send you are creating.",
       "output_schema": {
         "batch_id": ""
       },
-      "parameters": [
-      ],
+      "parameters": [],
       "enabled": true
     },
     {
@@ -536,7 +503,7 @@
       "title": "Get Scheduled Send",
       "category": "investigation",
       "annotation": "get_scheduled_send",
-      "description": "This action allows you to retrieve all cancelled and paused scheduled send information.",
+      "description": "Retrieves all canceled and paused scheduled send information from SendGrid based on the batch_id you have specified.",
       "output_schema": {},
       "parameters": [
         {
@@ -547,7 +514,7 @@
           "visible": true,
           "type": "text",
           "name": "batch_id",
-          "description": "Retrieve the cancel/paused scheduled send information for a specific batch_id"
+          "description": "The batch id whose canceled or paused scheduled send information you want to retrieve from SendGrid."
         }
       ],
       "enabled": true
@@ -557,7 +524,7 @@
       "title": "Update Scheduled Send",
       "category": "investigation",
       "annotation": "update_scheduled_send",
-      "description": "This action allows you to cancel or pause a scheduled send associated with a batch_id.",
+      "description": "Cancels or pauses a scheduled send that is associated with the batch_id you have specified.",
       "output_schema": {},
       "parameters": [
         {
@@ -568,7 +535,7 @@
           "visible": true,
           "type": "text",
           "name": "batch_id",
-          "description": "The batch ID is the identifier that your scheduled mail sends share."
+          "description": "The batch ID whose scheduled send (mail) you want to cancel or pause."
         },
         {
           "title": "Status",
@@ -583,7 +550,7 @@
           ],
           "name": "status",
           "value": "Pause",
-          "description": "The status of the send you would like to implement. This can be pause or cancel"
+          "description": "The action (status) that you want to perform on the scheduled send. You can choose betweenPauseorCancel."
         }
       ],
       "enabled": true
@@ -593,7 +560,7 @@
       "title": "Delete Scheduled Send",
       "category": "investigation",
       "annotation": "delete_scheduled_send",
-      "description": "This action allows you to delete the cancellation/pause of a scheduled send.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.",
+      "description": "Deletes a scheduled send that is associated with the batch_id you have specified. Note: Scheduled sends that are canceled less than 10 minutes before the scheduled time are not guaranteed to be canceled.",
       "output_schema": {},
       "parameters": [
         {
@@ -604,7 +571,7 @@
           "visible": true,
           "type": "text",
           "name": "batch_id",
-          "description": "The batch ID is the identifier that your scheduled mail sends share."
+          "description": "The batch ID whose scheduled send (mail) you want to delete."
         }
       ],
       "enabled": true
