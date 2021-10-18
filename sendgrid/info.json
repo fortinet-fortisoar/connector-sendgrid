@@ -172,33 +172,6 @@
       "category": "investigation",
       "annotation": "get_email_stats",
       "description": "Retrieves your email statistics between a specified date range from SendGrid based on the type of email statistics and other input parameters you have specified.",
-      "output_schema": [
-        {
-          "date": "",
-          "stats": [
-            {
-              "metrics": {
-                "blocks": "",
-                "bounce_drops": "",
-                "bounces": "",
-                "clicks": "",
-                "deferred": "",
-                "delivered": "",
-                "invalid_emails": "",
-                "opens": "",
-                "processed": "",
-                "requests": "",
-                "spam_report_drops": "",
-                "spam_reports": "",
-                "unique_clicks": "",
-                "unique_opens": "",
-                "unsubscribe_drops": "",
-                "unsubscribes": ""
-              }
-            }
-          ]
-        }
-      ],
       "conditional_output_schema": [
         {
           "condition": "{{stats_by === Global Email Statistics}}",
