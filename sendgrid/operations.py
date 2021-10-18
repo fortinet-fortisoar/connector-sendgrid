@@ -21,7 +21,7 @@ logger = get_logger('sendgrid')
 class SendGrid(object):
 
     def __init__(self, config):
-        self.url = config.get('url').strip(',') + '/v3'
+        self.url = config.get('url').strip('/') + '/v3'
         self.api_key = config.get('api_key')
         if not self.url.startswith('https://') and not self.url.startswith('http://'):
             self.url = 'https://{}'.format(self.url)
@@ -35,8 +35,8 @@ class SendGrid(object):
             response = requests.request(method, endpoint, headers=header, verify=self.verify_ssl, params=params,
                                         data=data)
             if response.ok:
-                logger.info('Successfully got response for url {}'.format(url))
-                if 'json' in str(response.headers):
+                logger.info('Successfully got response for url {}'.format(endpoint))
+                if 'json' in str(response.headers.get('Content-Type')):
                     return response.json()
                 else:
                     try:
@@ -44,7 +44,7 @@ class SendGrid(object):
                     except:
                         return response.content
             else:
-                if 'json' in str(response.headers):
+                if 'json' in str(response.headers.get('Content-Type')):
                     raise ConnectorError({'status_code': response.status_code, 'message': response.json()})
                 else:
                     raise ConnectorError({'status_code': response.status_code, 'message': response.content})
