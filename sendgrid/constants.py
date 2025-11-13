@@ -1,3 +1,10 @@
+"""
+Copyright start
+MIT License
+Copyright (c) 2025 Fortinet Inc
+Copyright end
+"""
+
 SCHDULED_ENDPOINT = '/user/scheduled_sends'
 CONTACT_LIST_ENDPOINT = '/marketing/lists'
 ALERT_ENDPOINT = '/alerts'

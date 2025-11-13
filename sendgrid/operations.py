@@ -1,11 +1,11 @@
-""" Copyright start
-  Copyright (C) 2008 - 2021 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
+"""
+Copyright start
+MIT License
+Copyright (c) 2025 Fortinet Inc
+Copyright end
+"""
 
 import requests, json, base64
-import mimetypes
 from os.path import join
 from .constants import *
 from sendgrid import SendGridAPIClient
@@ -13,7 +13,7 @@ from connectors.cyops_utilities.builtins import download_file_from_cyops
 from integrations.crudhub import make_request, make_file_upload_request
 from sendgrid.helpers.mail import (Mail, Attachment, FileContent, FileName, Disposition, BatchId, SendAt, To, Bcc, Cc, From, Content, Subject, FileType)
 
-
+from connectors.environment import expand
 from connectors.core.connector import ConnectorError, get_logger
 
 logger = get_logger('sendgrid')
@@ -130,22 +130,27 @@ def _handle_attachments(iri_list, message, inline=False):
         raise ConnectorError(str(err))
 
 
-def send_email(config, params):
+def send_email(config, params, **kwargs):
     try:
+        env = kwargs.get('env', {})
         params = {k: v for k, v in params.items() if v is not None and v != '' and v != {}}
         message = Mail()
-
         if not params.get('html_content') and not params.get('plain_text_content'):
             raise ConnectorError('At least one parameter is required from \'Plain Text Body Content\' or \'HTML Body Content\'')
         message.from_email = From(params.get('from_email'))
-        if params.get('subject'):
+        if params.get('body_type') == 'Email Template':
+            email_template = params.get('email_templates')
+            subject, body = _email_template_handler(email_template, env=env)
+            message.content = Content('text/html', body)
+        else:
+            subject = str(params.get('subject'))
+            if params.get('html_content'):
+                message.content = Content('text/html', params.get('html_content'))
+            if params.get('plain_text_content'):
+                message.content = Content('text/plain', params.get('plain_text_content'))
+        if subject:
             message.subject = Subject(params.get('subject'))
 
-        if params.get('html_content'):
-            message.content = Content('text/html', params.get('html_content'))
-
-        if params.get('plain_text_content'):
-            message.content = Content('text/plain', params.get('plain_text_content'))
 
         _handle_attachments(str_to_list(params.get('iri_list')), message)
         _handle_attachments(str_to_list(params.get('inline_iri_list')), message, True)
@@ -187,7 +192,7 @@ def send_email(config, params):
         raise ConnectorError(str(err))
 
 
-def get_email_stats(config, params):
+def get_email_stats(config, params, **kwargs):
     try:
         endpoint = ENDPOINTS_DICT.get(params.pop('stats_by'))
         sendgrid_obj = SendGrid(config)
@@ -203,7 +208,7 @@ def get_email_stats(config, params):
         raise ConnectorError(str(err))
 
 
-def search_email(config, params):
+def search_email(config, params, **kwargs):
     try:
         sendgrid_obj = SendGrid(config)
         endpoint = '/messages'
@@ -218,7 +223,7 @@ def search_email(config, params):
         raise ConnectorError(str(err))
 
 
-def get_contact_list(config, params):
+def get_contact_list(config, params, **kwargs):
     try:
         sendgrid_obj = SendGrid(config)
         return sendgrid_obj.make_rest_call(CONTACT_LIST_ENDPOINT)
@@ -227,7 +232,7 @@ def get_contact_list(config, params):
         raise ConnectorError(str(err))
 
 
-def get_alerts(config, params):
+def get_alerts(config, params, **kwargs):
     try:
         sendgrid_obj = SendGrid(config)
         return sendgrid_obj.make_rest_call(ALERT_ENDPOINT)
@@ -236,7 +241,7 @@ def get_alerts(config, params):
         raise ConnectorError(str(err))
 
 
-def create_batch_id(config, params):
+def create_batch_id(config, params, **kwargs):
     try:
         sendgrid_obj = SendGrid(config)
         return sendgrid_obj.make_rest_call(CREATE_BATCH_ENDPOINT, method='POST')
@@ -245,7 +250,7 @@ def create_batch_id(config, params):
         raise ConnectorError(str(err))
 
 
-def get_scheduled_send(config, params):
+def get_scheduled_send(config, params, **kwargs):
     try:
         sendgrid_obj = SendGrid(config)
         if params.get('batch_id'):
@@ -259,7 +264,7 @@ def get_scheduled_send(config, params):
         raise ConnectorError(str(err))
 
 
-def update_scheduled_send(config, params):
+def update_scheduled_send(config, params, **kwargs):
     try:
         sendgrid_obj = SendGrid(config)
         data = {
@@ -272,7 +277,7 @@ def update_scheduled_send(config, params):
         raise ConnectorError(str(err))
 
 
-def delete_scheduled_send(config, params):
+def delete_scheduled_send(config, params, **kwargs):
     try:
         sendgrid_obj = SendGrid(config)
         endpoint = SCHDULED_ENDPOINT + '/{batch_id}'.format(batch_id=params.get('batch_id'))
@@ -280,6 +285,30 @@ def delete_scheduled_send(config, params):
     except Exception as err:
         logger.exception(str(err))
         raise ConnectorError(str(err))
+
+def _email_template_handler(email_template, env={}):
+    request_body = {'logic': 'OR', 'filters': [{'field': 'name', 'operator': 'eq', 'value': email_template}]}
+    response = make_request('/api/query/email_templates', 'POST', body=request_body)['hydra:member']
+    subject = ''
+    content = ''
+    if response:
+        subject = response[0]['subject']
+        content = response[0]['content']
+        try:
+            subject = expand(env, subject)
+            content = expand(env, content)
+        except Exception as err:
+            logger.error('err: {}'.format(err))
+            raise ConnectorError(err)
+    return subject, content
+
+def get_email_templates(config, params, **kwargs):
+    email_template_names = []
+    response = make_request('/api/3/email_templates', 'GET')['hydra:member']
+    for email_template in response:
+        email_template_names.append(email_template['name'])
+    return email_template_names
+
 
 
 def check_health(config):
@@ -303,5 +332,6 @@ operations = {
     'create_batch_id': create_batch_id,
     'get_scheduled_send': get_scheduled_send,
     'update_scheduled_send': update_scheduled_send,   
-    'delete_scheduled_send': delete_scheduled_send 
+    'delete_scheduled_send': delete_scheduled_send,
+    'get_email_templates': get_email_templates
 }

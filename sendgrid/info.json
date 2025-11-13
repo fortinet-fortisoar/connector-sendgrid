@@ -1,15 +1,15 @@
 {
   "name": "sendgrid",
   "label": "SendGrid",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "SendGrid",
-  "publisher": "Community",
+  "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
   "category": "Email Server",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/sendgrid/177/sendgrid-v1-0-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -55,7 +55,7 @@
       "parameters": [
         {
           "title": "From",
-          "tooltip": "The 'From' email address used to deliver the message",
+          "tooltip": "The email ID of the sender from whose account you want to send the email. This address must be a verified sender in your SendGrid account.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -65,17 +65,17 @@
         },
         {
           "title": "To Recipients",
-          "tooltip": "The email address of the recipients, in csv or list format",
+          "tooltip": "The email IDs of the recipients, in CSV or list format, to whose account you want to deliver the email.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "email",
           "name": "to_emails",
-          "description": "The email IDs of the recipients, in CSV or list format, towhose account you want to deliver the email."
+          "description": "The email IDs of the recipients, in CSV or list format, to whose account you want to deliver the email."
         },
         {
           "title": "CC Recipients",
-          "tooltip": "CSV / List Format",
+          "tooltip": "The email IDs of the members, in CSV or list format, that you want to add to the CC list of the email.",
           "description": "(Optional) The email IDs of the members, in CSV or list format, that you want to add to the CC list of the email.",
           "required": false,
           "editable": true,
@@ -94,34 +94,67 @@
           "name": "bcc_recipients"
         },
         {
-          "title": "Subject",
-          "tooltip": "The subject of your email",
-          "required": false,
-          "editable": true,
+          "title": "Body Type",
+          "name": "body_type",
+          "type": "select",
+          "options": [
+            "Rich Text",
+            "Email Template"
+          ],
           "visible": true,
-          "type": "text",
-          "name": "subject",
-          "description": "(Optional) The subject of your email that you want to send using your SendGrid account."
-        },
-        {
-          "title": "Plain Text Body Content",
-          "tooltip": "The plain text body of the email",
-          "required": false,
           "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "plain_text_content",
-          "description": "(Optional) The body of the email in plain text, which you want to send using your SendGrid account."
-        },
-        {
-          "title": "HTML Body Content",
-          "tooltip": "The html body of the email",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "html_content",
-          "description": "(Optional) The body of the email in HTML, which you want to send using your SendGrid account."
+          "required": true,
+          "description": "Select the format in which you want to send the email. You can choose from the following options: Rich Text, or Email Template.\nIf you choose Rich Text, then in the Content field, you can add formatted content, images, and even custom jinja expressions using Dynamic Values.\nIf you choose Email Template, then the Email Template drop-down list is displayed, using which you can select the template that you want to use to send the email. An existing email template is passed as an input for the email subject and body (content) allowing you to leverage an existing email template and build upon it, thereby, avoiding re-work and ensuring consistency.",
+          "tooltip": "Select the format in which you want to send the email.",
+          "onchange": {
+            "Rich Text": [
+              {
+                "title": "Subject",
+                "name": "subject",
+                "type": "text",
+                "tooltip": "The subject of your email that you want to send using your SendGrid account.",
+                "description": "The subject of your email that you want to send using your SendGrid account.",
+                "required": true,
+                "editable": true,
+                "visible": true
+              },
+              {
+                "title": "Plain Text Body Content",
+                "name": "plain_text_content",
+                "type": "text",
+                "tooltip": "The body of the email in plain text, which you want to send using your SendGrid account.",
+                "description": "The body of the email in plain text, which you want to send using your SendGrid account.",
+                "required": false,
+                "editable": true,
+                "visible": true
+              },
+              {
+                "title": "HTML Body Content",
+                "tooltip": "The body of the email in HTML, which you want to send using your SendGrid account.",
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "type": "richtext",
+                "renderer_type": "html",
+                "name": "html_content",
+                "description": "(Optional) The body of the email in HTML, which you want to send using your SendGrid account."
+              }
+            ],
+            "Email Template": [
+              {
+                "title": "Email Template",
+                "name": "email_templates",
+                "type": "select",
+                "apiOperation": "get_email_templates",
+                "visible": true,
+                "editable": true,
+                "required": true,
+                "tooltip": "Select a template, in the Email Template field, to use when sending emails to users.",
+                "description": "Select a template, in the Email Template field, to use when sending emails to users."
+              }
+            ]
+          },
+          "value": "Rich Text"
         },
         {
           "title": "Attachment IRIs",
@@ -575,6 +608,18 @@
         }
       ],
       "enabled": true
+    },
+    {
+      "operation": "get_email_templates",
+      "title": "Get Email Templates",
+      "description": "Get available email templates",
+      "category": "investigation",
+      "annotation": "get_email_templates",
+      "is_config_required": false,
+      "output_schema": {},
+      "enabled": true,
+      "visible": false,
+      "parameters": []
     }
   ]
 }

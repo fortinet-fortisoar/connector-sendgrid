@@ -3,7 +3,7 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - SendGrid - 1.0.0",
+      "name": "Sample - SendGrid - 1.1.0",
       "description": null,
       "visible": true,
       "image": null,
@@ -59,7 +59,7 @@
                 "name": "SendGrid",
                 "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
                 "params": [],
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "sendgrid",
                 "operation": "create_batch_id",
                 "operationTitle": "Create Batch ID",
@@ -148,7 +148,7 @@
                   "start_date": "2021-09-14T18:30:00.000Z",
                   "aggregated_by": ""
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "sendgrid",
                 "operation": "get_email_stats",
                 "operationTitle": "Get Email Statistics",
@@ -235,7 +235,7 @@
                   "status": "Cancel",
                   "batch_id": "NTU0YTFmMzMtMTZlNS0xMWVjLWJmOWEtYTYyY2Y3YWI5NWM0LWU3N2NlYjc2Ng"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "sendgrid",
                 "operation": "update_scheduled_send",
                 "operationTitle": "Update Scheduled Send",
@@ -319,7 +319,7 @@
                 "name": "SendGrid",
                 "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
                 "params": [],
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "sendgrid",
                 "operation": "get_contact_list",
                 "operationTitle": "Get Contact List",
@@ -403,7 +403,7 @@
                 "name": "SendGrid",
                 "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
                 "params": [],
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "sendgrid",
                 "operation": "get_scheduled_send",
                 "operationTitle": "Get Scheduled Send",
@@ -464,7 +464,7 @@
                   "limit": "",
                   "query": "subject=test email from sendgrid server"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "sendgrid",
                 "operation": "search_email",
                 "operationTitle": "Search Emails",
@@ -550,7 +550,7 @@
                 "params": {
                   "batch_id": "NTU0YTFmMzMtMTZlNS0xMWVjLWJmOWEtYTYyY2Y3YWI5NWM0LWU3N2NlYjc2Ng"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "sendgrid",
                 "operation": "delete_scheduled_send",
                 "operationTitle": "Delete Scheduled Send",
@@ -634,7 +634,7 @@
                 "name": "SendGrid",
                 "config": "991cbe5d-c166-4f9e-84c8-5da16233718e",
                 "params": [],
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "sendgrid",
                 "operation": "get_alerts",
                 "operationTitle": "Get Alerts",
@@ -730,7 +730,7 @@
                   "inline_iri_list": "",
                   "plain_text_content": "plain content of body"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "sendgrid",
                 "operation": "send_email",
                 "operationTitle": "Send Email",
