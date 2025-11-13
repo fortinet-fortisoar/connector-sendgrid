@@ -1,3 +1,10 @@
+""" Copyright start
+  Copyright (C) 2008 - 2025 Fortinet Inc.
+  All rights reserved.
+  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+  Copyright end """
+
+
 SCHDULED_ENDPOINT = '/user/scheduled_sends'
 CONTACT_LIST_ENDPOINT = '/marketing/lists'
 ALERT_ENDPOINT = '/alerts'

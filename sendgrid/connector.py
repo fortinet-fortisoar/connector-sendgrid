@@ -1,5 +1,5 @@
 """ Copyright start
-  Copyright (C) 2008 - 2021 Fortinet Inc.
+  Copyright (C) 2008 - 2025 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
@@ -13,7 +13,7 @@ class Sendgrid(Connector):
     def execute(self, config, operation, params, **kwargs):
         try:
             action = operations.get(operation)
-            return action(config, params)
+            return action(config, params, **kwargs)
         except Exception as err:
             logger.exception(str(err))
             raise ConnectorError(str(err))
