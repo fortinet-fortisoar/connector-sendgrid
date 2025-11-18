@@ -9,7 +9,7 @@
   "category": "Email Server",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.0/sendgrid/110/sendgrid-v1-1-0",
   "configuration": {
     "fields": [
       {
@@ -104,16 +104,16 @@
           "visible": true,
           "editable": true,
           "required": true,
-          "description": "Select the format in which you want to send the email. You can choose from the following options: Rich Text, or Email Template.\nIf you choose Rich Text, then in the Content field, you can add formatted content, images, and even custom jinja expressions using Dynamic Values.\nIf you choose Email Template, then the Email Template drop-down list is displayed, using which you can select the template that you want to use to send the email. An existing email template is passed as an input for the email subject and body (content) allowing you to leverage an existing email template and build upon it, thereby, avoiding re-work and ensuring consistency.",
-          "tooltip": "Select the format in which you want to send the email.",
+          "description": "Select the format in which you want to send the email. You can choose from the following options: Rich Text: Select to specify a subject and body of the email in the following fields. Subject and Body. Email Template: Select an email template to use to send the email. An existing email template is passed as an input for the email subject and body (content) allowing you to leverage an existing email template and build upon it, thereby, avoiding re-work and ensuring consistency.",
+          "tooltip": "Select the format in which you want to send the email. You can choose from the following options: Rich Text: Select to specify a subject and body of the email in the following fields. Subject and Body. Email Template: Select an email template to use to send the email. An existing email template is passed as an input for the email subject and body (content) allowing you to leverage an existing email template and build upon it, thereby, avoiding re-work and ensuring consistency.",
           "onchange": {
             "Rich Text": [
               {
                 "title": "Subject",
                 "name": "subject",
                 "type": "text",
-                "tooltip": "The subject of your email that you want to send using your SendGrid account.",
-                "description": "The subject of your email that you want to send using your SendGrid account.",
+                "tooltip": "Specify a subject of the email that you want to send from the SendGrid account.",
+                "description": "Specify a subject of the email that you want to send from the SendGrid account.",
                 "required": true,
                 "editable": true,
                 "visible": true
@@ -122,22 +122,22 @@
                 "title": "Plain Text Body Content",
                 "name": "plain_text_content",
                 "type": "text",
-                "tooltip": "The body of the email in plain text, which you want to send using your SendGrid account.",
-                "description": "The body of the email in plain text, which you want to send using your SendGrid account.",
+                "tooltip": "Specify a message or content of the email that you want to send from your SendGrid account.",
+                "description": "Specify a message or content of the email that you want to send from your SendGrid account.",
                 "required": false,
                 "editable": true,
                 "visible": true
               },
               {
                 "title": "HTML Body Content",
-                "tooltip": "The body of the email in HTML, which you want to send using your SendGrid account.",
+                "tooltip": "Specify a message or content of the email in HTML that you want to send from your SendGrid account.",
                 "required": false,
                 "editable": true,
                 "visible": true,
                 "type": "richtext",
                 "renderer_type": "html",
                 "name": "html_content",
-                "description": "(Optional) The body of the email in HTML, which you want to send using your SendGrid account."
+                "description": "(Optional) Specify a message or content of the email in HTML that you want to send from your SendGrid account."
               }
             ],
             "Email Template": [
@@ -149,8 +149,8 @@
                 "visible": true,
                 "editable": true,
                 "required": true,
-                "tooltip": "Select a template, in the Email Template field, to use when sending emails to users.",
-                "description": "Select a template, in the Email Template field, to use when sending emails to users."
+                "tooltip": "Select an email template to use to send the email. An existing email template is passed as an input for the email subject and body (content) allowing you to leverage an existing email template and build upon it, thereby, avoiding re-work and ensuring consistency. NOTE: This feature of using preexisting email templates for sending emails is only available in FortiSOAR™ v7.6.5 and later.",
+                "description": "Select an email template to use to send the email. An existing email template is passed as an input for the email subject and body (content) allowing you to leverage an existing email template and build upon it, thereby, avoiding re-work and ensuring consistency. NOTE: This feature of using preexisting email templates for sending emails is only available in FortiSOAR™ v7.6.5 and later."
               }
             ]
           },
