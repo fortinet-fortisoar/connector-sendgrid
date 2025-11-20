@@ -103,7 +103,7 @@
           ],
           "visible": true,
           "editable": true,
-          "required": true,
+          "required": false,
           "description": "Select the format in which you want to send the email. You can choose from the following options: Rich Text: Select to specify a subject and body of the email in the following fields. Subject and Body. Email Template: Select an email template to use to send the email. An existing email template is passed as an input for the email subject and body (content) allowing you to leverage an existing email template and build upon it, thereby, avoiding re-work and ensuring consistency.",
           "tooltip": "Select the format in which you want to send the email. You can choose from the following options: Rich Text: Select to specify a subject and body of the email in the following fields. Subject and Body. Email Template: Select an email template to use to send the email. An existing email template is passed as an input for the email subject and body (content) allowing you to leverage an existing email template and build upon it, thereby, avoiding re-work and ensuring consistency.",
           "onchange": {
